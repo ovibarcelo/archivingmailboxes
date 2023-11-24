@@ -1,11 +1,11 @@
 ﻿Connect-ExchangeOnline
 #Get the retention policy applied to a user
-##Get-Mailbox -Identity admin@edu.educaronline.org | Select-Object DisplayName, RetentionPolicy
+##Get-Mailbox -Identity user@yourschool.com | Select-Object DisplayName, RetentionPolicy
 
 #Get the archive mailbox status for a user
-##Get-Mailbox -Identity adelev@edu.educaronline.org | Select ArchiveStatus, ArchiveDatabase
+##Get-Mailbox -Identity user@yourschool.com | Select ArchiveStatus, ArchiveDatabase
 
-#Get the Srchive status for all
+#Get the Archive status for all
 ##Get-Mailbox -ResultSize Unlimited -RecipientTypeDetails UserMailbox | Select DisplayName, ArchiveStatus, ArchiveDatabase, RetentionPolcicy
 
 #Get the policy aplied to all
@@ -17,8 +17,8 @@
 $mailboxes = Get-Recipient -Filter {Title -eq "Student"}
 
 
-# Get the retention policy named "Bruno's policy"
-$policy = Get-RetentionPolicy -Identity "Archive 1 year"
+# Get the retention policy named "My policy"
+$policy = Get-RetentionPolicy -Identity "Mypolicy"
 
 # Apply the retention policy to the mailboxes
 $mailboxes | ForEach-Object {Set-Mailbox -Identity $_.Identity -RetentionPolicy $policy.Name}
